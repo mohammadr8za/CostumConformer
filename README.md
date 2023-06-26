@@ -3,7 +3,7 @@
 
 <div align="center">
 
-**PyTorch implementation of Conformer: Convolution-augmented Transformer for Speech Recognition.**
+**PyTorch implementation of Conformer**
 
   
 ORIGINAL VERSION LINK: https://github.com/sooftware/conformer/
