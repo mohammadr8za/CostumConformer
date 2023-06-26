@@ -17,8 +17,8 @@ import torch.nn as nn
 from torch import Tensor
 from typing import Tuple
 
-from .encoder import ConformerEncoder
-from .modules import Linear
+from encoder import ConformerEncoder
+from modules import Linear
 
 
 class Conformer(nn.Module):
@@ -49,6 +49,7 @@ class Conformer(nn.Module):
         - **outputs** (batch, out_channels, time): Tensor produces by conformer.
         - **output_lengths** (batch): list of sequence output lengths
     """
+
     def __init__(
             self,
             num_classes: int,
@@ -106,3 +107,9 @@ class Conformer(nn.Module):
         outputs = self.fc(encoder_outputs)
         outputs = nn.functional.log_softmax(outputs, dim=-1)
         return outputs, encoder_output_lengths
+
+
+if __name__ == "__main__":
+    model = Conformer(num_classes=2, input_dim=3)
+    sample_input = torch.randn(size=(1, 5, 80))
+    sample_output = model(sample_input)
