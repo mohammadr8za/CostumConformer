@@ -111,5 +111,5 @@ class Conformer(nn.Module):
 
 if __name__ == "__main__":
     model = Conformer(num_classes=2, input_dim=3)
-    sample_input = torch.randn(size=(1, 5, 16))
-    sample_output = model(sample_input, 32)
+    sample_input = torch.randn(size=(32, 5, 16))
+    sample_output = model(sample_input, 16)

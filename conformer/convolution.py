@@ -167,9 +167,9 @@ class Conv2dSubampling(nn.Module):
     def __init__(self, in_channels: int, out_channels: int) -> None:
         super(Conv2dSubampling, self).__init__()
         self.sequential = nn.Sequential(
-            nn.Conv2d(in_channels, out_channels, kernel_size=3, stride=1),
+            nn.Conv2d(in_channels, out_channels, kernel_size=(3, 3), stride=1),
             nn.ReLU(),
-            nn.Conv2d(out_channels, out_channels, kernel_size=3, stride=1),
+            nn.Conv2d(out_channels, out_channels, kernel_size=(3, 3), stride=1),
             nn.ReLU(),
         )
 
