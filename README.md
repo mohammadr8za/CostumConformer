@@ -8,5 +8,5 @@
   
 ORIGINAL VERSION LINK: https://github.com/sooftware/conformer/
 
-
+Encoder is implemented and modifed to use MFCC features (by default: 5 frames and 16 coefficients) for audio signal classification.
 # 🏗️UNDER RECONSTRUCTION🏗️
