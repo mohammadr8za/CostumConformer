@@ -91,7 +91,8 @@ class Conformer(nn.Module):
         """ Update dropout probability of model """
         self.encoder.update_dropout(dropout_p)
 
-    def forward(self, inputs: Tensor, input_lengths: Tensor) -> Tuple[Tensor, Tensor]:
+    # def forward(self, inputs: Tensor, input_lengths: Tensor) -> Tuple[Tensor, Tensor]:
+    def forward(self, inputs: Tensor):
         """
         Forward propagate a `inputs` and `targets` pair for training.
 
@@ -103,13 +104,21 @@ class Conformer(nn.Module):
         Returns:
             * predictions (torch.FloatTensor): Result of model predictions.
         """
-        encoder_outputs, encoder_output_lengths = self.encoder(inputs, input_lengths)
+        # encoder_outputs, encoder_output_lengths = self.encoder(inputs, input_lengths)
+        encoder_outputs = self.encoder(inputs)
         outputs = self.fc(encoder_outputs)
         outputs = nn.functional.log_softmax(outputs, dim=-1)
-        return outputs, encoder_output_lengths
+
+        # return outputs, encoder_output_lengths
+        return outputs
 
 
 if __name__ == "__main__":
-    model = Conformer(num_classes=2, input_dim=3)
-    sample_input = torch.randn(size=(32, 5, 16))
-    sample_output = model(sample_input, 16)
+    model = Conformer(num_classes=2, input_dim=16)
+    # Size if currently defined for single frame input and 16 MFCC coefficients with 32 as batch size
+    # (Batch_Size, n_frames, n_samples)
+    sample_input = torch.randn(size=(32, 1, 16))
+    # sample_output = model(sample_input, 16)
+    sample_output = model(sample_input)
+
+
